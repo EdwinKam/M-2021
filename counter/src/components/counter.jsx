@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 class Counter extends Component {
     state={
-        count:0,
+        count:this.props.value1,
         imageUrl: "https://picsum.photos/200",
         tags: ['tag1','tag2','tag3'],
         tag:[]
@@ -37,13 +37,19 @@ class Counter extends Component {
     handleIncrement=()=>{
         this.setState({count: this.state.count+1});
     }
-    render(){
 
+    handleDecrement=()=>{
+        this.setState({count:this.state.count-1})
+    }
+    render(){
+        // console.log('prop',this.props) props is the obj that passed in counters
         return (
             <div>
                 {/*<img src={this.state.imageUrl} alt="ddddd"/>*/}
                 <span className= {this.badgeColor()}>{this.formatCount()}</span>
-                <button onClick={this.handleIncrement}className ="btn btn-dark">Increment</button>
+                <button onClick={this.handleIncrement}className ="btn btn-dark">+</button>
+                &nbsp;
+                <button onClick={this.handleDecrement}className ="btn btn-dark">-</button>
                 {this.renderTags()}
             </div>
         );
